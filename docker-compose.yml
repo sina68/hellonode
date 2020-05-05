@@ -4,4 +4,4 @@ services: # defining service/s
         image: nodejs/hello # image named given
         build: . # directory what to build, here it is root directory
         ports:
-            - "8000:8000"
+            - "3000:3000"
