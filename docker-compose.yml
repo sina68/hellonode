@@ -26,6 +26,6 @@ services:
     links: 
         - "postgres"
     ports:
-        - "80:80"
+        - "3000:3000"
 volumes:
   db_data:
