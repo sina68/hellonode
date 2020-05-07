@@ -21,7 +21,7 @@ app.get('/hello', (request, response) => {
 app.post('/addNumbers', (req, res) => {
   console.log(req.body.input)
   // get request input
-  const { numbers } = req.body;
+  const { numbers } = req.body.input;
 
   // run some business logic
 
