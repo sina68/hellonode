@@ -15,6 +15,21 @@ app.get('/hello', (request, response) => {
   response.json({ info: 'Node.js, Express, and Postgres API' })
 })
 
+// Request Handler
+app.post('/getFirstUser', async (req, res) => {
+
+  // run some business logic
+
+
+  // success
+  return res.json({
+    id: "1",
+    name: "sina",
+    email: "sina@gmail.com"
+  })
+
+});
+
 app.get('/users', db.getUsers)
 app.get('/users/:id', db.getUserById)
 app.post('/users', db.createUser)
