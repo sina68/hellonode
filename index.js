@@ -4,12 +4,14 @@ const app = express()
 const db = require('./queries')
 const port = 3000
 
-app.use(bodyParser.json())
+
 app.use(
   bodyParser.urlencoded({
-    extended: false,
+    extended: false
   })
 )
+
+app.use(bodyParser.json())
 
 app.get('/hello', (request, response) => {
   response.json({ info: 'Node.js, Express, and Postgres API' })
