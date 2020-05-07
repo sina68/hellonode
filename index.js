@@ -4,19 +4,14 @@ const app = express()
 const db = require('./queries')
 const port = 3000
 
-app.use(bodyParser.json())
-app.use(
-  bodyParser.urlencoded({
-    extended: true,
-  })
-)
+
 
 app.get('/hello', (request, response) => {
   response.json({ info: 'Node.js, Express, and Postgres API' })
 })
 
 // Request Handler
-app.post('/addNumbers', async (req, res) => {
+app.post('/addNumbers', (req, res) => {
   console.log(req.body)
   // get request input
   const { numbers } = req.body;
