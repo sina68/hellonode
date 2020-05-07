@@ -16,17 +16,31 @@ app.get('/hello', (request, response) => {
 })
 
 // Request Handler
-app.post('/getFirstUser', async (req, res) => {
+app.post('/addNumbers', async (req, res) => {
+
+  // get request input
+  const { numbers } = req.body.input;
 
   // run some business logic
 
 
-  // success
-  return res.json({
-    id: "1",
-    name: "sina",
-    email: "sina@gmail.com"
+  /*
+  // In case of errors:
+  return res.status(400).json({
+    message: "error happened"
   })
+  */
+
+  try {
+    return res.json({
+      sum: numbers.reduce((s, n) => s + n, 0)
+    });
+  } catch (e) {
+    console.error(e)
+    return res.status(500).json({
+      message: 'unexpected'
+    })
+  }
 
 });
 
