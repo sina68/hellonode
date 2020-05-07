@@ -17,7 +17,7 @@ app.get('/hello', (request, response) => {
 
 // Request Handler
 app.post('/addNumbers', async (req, res) => {
-
+  console.log(req.body)
   // get request input
   const { numbers } = req.body;
 
