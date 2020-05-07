@@ -7,7 +7,7 @@ const port = 3000
 
 app.use(
   bodyParser.urlencoded({
-    extended: false
+    extended: false,
   })
 )
 
