@@ -37,19 +37,19 @@ query ($parent_id: uuid!) {
 `;
 
 // execute the parent operation in Hasura
-const execute = async (variables) => {
+const execute = async (query, variables) => {
   const fetchResponse = await fetch(
     "http://localhost:8080/v1/graphql",
     {
       method: 'POST',
       body: JSON.stringify({
-        query: categoriesByAppId,
+        query: query,
         variables
       })
     }
   );
+
   const data = await fetchResponse.json();
-  console.log('DEBUG: ', data.data.category[0].id);
   return data;
 };
 
@@ -57,18 +57,21 @@ const execute = async (variables) => {
 // Request Handler
 app.post('/frontpage', async (req, res) => {
 
-  // get request input
   const { application_id } = req.body.input;
 
-  // run some business logic
-
-  // execute the Hasura operation
-  const { data, errors } = await execute({ application_id });
-
-  // if Hasura operation errors, then throw error
+  const { data, errors } = await execute(categoriesByAppId, { application_id });
   if (errors) {
     return res.status(400).json(errors[0])
   }
+
+  data.category[0].products = [];
+  let parent_id = data.category[0].id;
+  const { data2, errors2 } = await execute(firstSubCategory, { parent_id });
+  if (errors2) {
+    return res.status(400).json(errors2[0])
+  }
+
+
 
   // success
   return res.json({
