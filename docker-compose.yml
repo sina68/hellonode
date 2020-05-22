@@ -7,10 +7,16 @@ services:
     - db_data:/var/lib/postgresql/data
     environment:
       POSTGRES_PASSWORD: postgrespassword
+  adminer:
+    container_name: "adminer"
+    image: adminer
+    restart: always
+    ports:
+      - 8080:8080
   graphql-engine:
     image: hasura/graphql-engine:v1.2.1
     ports:
-    - "8080:8080"
+    - "5050:5050"
     depends_on:
     - "postgres"
     restart: always
@@ -34,4 +40,4 @@ services:
   #   restart: always
 volumes:
   db_data:
-  pgadmin:
+  # pgadmin:
