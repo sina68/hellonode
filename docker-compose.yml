@@ -12,11 +12,11 @@ services:
     image: adminer
     restart: always
     ports:
-      - 8080:8080
+      - 5050:5050
   graphql-engine:
     image: hasura/graphql-engine:v1.2.1
     ports:
-    - "5050:5050"
+    - "8080:8080"
     depends_on:
     - "postgres"
     restart: always
